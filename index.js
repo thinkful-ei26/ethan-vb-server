@@ -22,6 +22,44 @@ app.use(
   })
 );
 
+let trips = [
+  {
+    user: 'tom',
+    selectedOptions: ['skiing', 'breweries'],
+    duration: 9
+  },
+
+  {
+    user: 'frank',
+    selectedOptions: ['beaches'],
+    duration: 9
+  },
+  
+  {
+    user: 'tom',
+    selectedOptions: ['city'],
+    duration: 9
+  }
+];
+
+app.get('/api/trips', (req, res) => {
+  res.json({trips});
+});
+
+app.post('/api/trips', (req, res) =>{
+  
+  console.log(req.body);
+
+  // const name = req.body.name;
+
+  const newTrip = req.body;
+
+  trips = [...trips, newTrip];
+
+  console.log(trips);
+  res.status(201).json({trips});
+});
+
 function runServer(port = PORT) {
   const server = app
     .listen(port, () => {
