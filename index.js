@@ -26,6 +26,27 @@ app.use(
   })
 );
 
+app.use(express.json());
+
+// const trips = [
+//   {
+//     user: 'tom',
+//     selectedOptions: ['skiing', 'breweries'],
+//     duration: 9
+//   },
+
+//   {
+//     user: 'frank',
+//     selectedOptions: ['beaches'],
+//     duration: 9
+//   },
+  
+//   {
+//     user: 'tom',
+//     selectedOptions: ['city'],
+//     duration: 9
+//   }
+// ];
 
 // app.get('/api/trips', (req, res) => {
 //   res.json({trips});
@@ -55,6 +76,36 @@ app.get('/api/trips', (req, res, next) => {
 //   console.log(trips);
 //   res.status(201).json({trips});
 // });
+
+app.post('/api/trips', (req, res, next) =>{
+  // const newTrip  = req.body;
+  console.log(req.body);
+  const {name, duration} = req.body;
+  const newTrip = {name, duration};
+
+  console.log(name, duration);
+
+
+  // const newTrip = { trip };
+
+
+
+  /***** Never trust users - validate input *****/
+  // if (!newTrip) {
+  //   const err = new Error('Missing `name` in request body');
+  //   err.status = 400;
+  //   return next(err);
+  // }
+
+  Trip.create(newTrip)
+    .then(result => {
+      console.log(result);
+      res.location(`${req.originalUrl}/${result.id}`).status(201).json(result);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
 
 function runServer(port = PORT) {
   const server = app

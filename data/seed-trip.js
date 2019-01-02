@@ -2,19 +2,19 @@
 
 const trips = [
   {
-    user: 'tom',
+    name: 'tom',
     selectedOptions: ['skiing', 'breweries'],
     duration: 9
   },
 
   {
-    user: 'frank',
+    name: 'frank',
     selectedOptions: ['beaches'],
-    duration: 9
+    duration: 2
   },
   
   {
-    user: 'tom',
+    name: 'fred',
     selectedOptions: ['city'],
     duration: 9
   }
