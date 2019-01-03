@@ -79,11 +79,11 @@ app.get('/api/trips', (req, res, next) => {
 
 app.post('/api/trips', (req, res, next) =>{
   // const newTrip  = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   const {name, duration} = req.body;
   const newTrip = {name, duration};
 
-  console.log(name, duration);
+  console.log(newTrip);
 
 
   // const newTrip = { trip };
@@ -106,6 +106,39 @@ app.post('/api/trips', (req, res, next) =>{
       next(err);
     });
 });
+
+app.put('/api/trips/:id', (req, res, next) => {
+  const id = req.params.id;
+  const {suggestion} = req.body;
+  const newSuggestion = suggestion;
+
+  console.log(newSuggestion);
+
+  Trip.findOne({_id: id})
+    .then(result => {
+      console.log(result);
+      const toUpdate = { 
+        selectedOptions: result.selectedOptions,
+        suggestions: [ ...result.suggestions, newSuggestion ],
+        _id: result._id,
+        name: result.name,
+        duration: result.duration,
+      };
+      return Trip.findOneAndUpdate({_id: id}, toUpdate, {new: true});
+    })
+  // Trip.findOneAndUpdate({_id: id}, newSuggestion, {new: true})
+    .then(result => {
+      if (result) {
+        res.json(result);
+      } else {
+        next();
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 
 function runServer(port = PORT) {
   const server = app
