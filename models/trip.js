@@ -6,7 +6,7 @@ const schema = new mongoose.Schema({
   name: String,
   selectedOptions: [String],
   duration: String,
-  suggestions: []
+  suggestions: [String]
 });
 
 schema.set('timestamps', true);

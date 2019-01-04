@@ -114,19 +114,19 @@ app.put('/api/trips/:id', (req, res, next) => {
 
   console.log(newSuggestion);
 
-  Trip.findOne({_id: id})
-    .then(result => {
-      console.log(result);
-      const toUpdate = { 
-        selectedOptions: result.selectedOptions,
-        suggestions: [ ...result.suggestions, newSuggestion ],
-        _id: result._id,
-        name: result.name,
-        duration: result.duration,
-      };
-      return Trip.findOneAndUpdate({_id: id}, toUpdate, {new: true});
-    })
-  // Trip.findOneAndUpdate({_id: id}, newSuggestion, {new: true})
+  // Trip.findOne({_id: id})
+  //   .then(result => {
+  //     console.log(result);
+  //     const toUpdate = { 
+  //       // selectedOptions: result.selectedOptions,
+  //       suggestions: [ ...result.suggestions, newSuggestion ]
+  //       // _id: result._id,
+  //       // name: result.name,
+  //       // duration: result.duration,
+  //     };
+  //     return Trip.findOneAndUpdate({_id: id}, toUpdate, {new: true});
+  //   })
+  Trip.findOneAndUpdate({_id: id}, { $push: {suggestions: newSuggestion} }, {new: true})
     .then(result => {
       if (result) {
         res.json(result);
