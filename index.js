@@ -80,8 +80,8 @@ app.get('/api/trips', (req, res, next) => {
 app.post('/api/trips', (req, res, next) =>{
   // const newTrip  = req.body;
   // console.log(req.body);
-  const {name, duration} = req.body;
-  const newTrip = {name, duration};
+  const {name, duration, selectedOptions} = req.body;
+  const newTrip = {name, duration, selectedOptions};
 
   console.log(newTrip);
 
