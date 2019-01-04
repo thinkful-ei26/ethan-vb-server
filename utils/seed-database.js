@@ -6,7 +6,7 @@ const { MONGODB_URI } = require('../config');
 
 const Trip = require('../models/trip');
 
-const {trips} = require('../data/seed-trip');
+const {trips} = require('../data/trip-data');
 
 console.log(MONGODB_URI);
 
