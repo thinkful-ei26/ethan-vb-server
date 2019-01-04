@@ -34,10 +34,12 @@ router.post('/', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   const id = req.params.id;
   const {suggestion} = req.body;
-  const newSuggestion = suggestion;
-  console.log(newSuggestion);
+  // console.log(req.body);
+  // const newSuggestion = suggestion;
+  console.log(suggestion);
+  // console.log(newSuggestion);
 
-  Trip.findOneAndUpdate({_id: id}, { $push: {suggestions: newSuggestion} }, {new: true})
+  Trip.findOneAndUpdate({_id: id}, { $push: {suggestions: suggestion} }, {new: true})
     .then(result => {
       if (result) {
         res.json(result);
