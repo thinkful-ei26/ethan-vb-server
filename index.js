@@ -88,10 +88,7 @@ app.use('/api/trips', tripsRouter);
 
 //   console.log(newTrip);
 
-
 //   // const newTrip = { trip };
-
-
 
 //   /***** Never trust users - validate input *****/
 //   // if (!newTrip) {
