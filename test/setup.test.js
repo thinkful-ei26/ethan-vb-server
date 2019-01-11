@@ -51,15 +51,12 @@ describe('Mocha and Chai', function() {
 
 describe('GET all trips', function(){
   it('should return an array of trip objects with the correct keys', function(){
-    // console.log(app);
-    // console.log(server);
     let res;
     return chai
       .request(app)
       .get('/api/trips')
       .then(response => {
         res = response;
-        console.log(res);
         expect(res).to.have.status(200);
         expect(res).to.be.json;
         expect(res.body).to.be.a('array');
