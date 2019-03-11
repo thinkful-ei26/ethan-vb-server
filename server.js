@@ -8,8 +8,8 @@ const passport = require('passport');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 
-const localStrategy;
-const jwtStrategy;
+const localStrategy = require('./passport/local');
+const jwtStrategy = require('./passport/jwt');
 
 
 const tripsRouter = require('./routes/trips');
@@ -38,7 +38,11 @@ const options = {session: false, failWithError: true};
 const jwtAuth = passport.authenticate('jwt', options);
 const localAuth = passport.authenticate('local', options);
 
+
 app.use('/api/trips', tripsRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/auth/login', localAuth, authRouter); //for login
+app.use('/api/auth', authRouter); //for refresh
 
 // Custom 404 Not Found route handler
 app.use((req, res, next) => {
