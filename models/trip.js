@@ -2,16 +2,17 @@
 
 const mongoose = require('mongoose');
 
-const schema = new mongoose.Schema({
+const tripSchema = new mongoose.Schema({
   name: String,
-  selectedOptions: [String],
-  duration: String,
-  suggestions: [String]
+  selectedOptions: [{ type: String, required: true }],
+  duration: { type: String, required: true },
+  suggestions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Suggestion', required: true }],
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
-schema.set('timestamps', true);
+tripSchema.set('timestamps', true);
 
-schema.set('toJSON', {
+tripSchema.set('toJSON', {
   virtuals: true,
   transform: (doc, result) => {
     delete result._id;
@@ -19,4 +20,6 @@ schema.set('toJSON', {
   }
 });
 
-module.exports = mongoose.model('Trip', schema);
+const Trip = mongoose.model('Trip', tripSchema);
+
+module.exports = Trip;

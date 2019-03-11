@@ -5,8 +5,10 @@ const mongoose = require('mongoose');
 const { MONGODB_URI } = require('../config');
 
 const Trip = require('../models/trip');
+const Suggestion = require('../models/suggestion');
+const User = require('../models/user');
 
-const {trips} = require('../data/trip-data');
+const {trips, suggestions, users} = require('../data/data');
 
 console.log(MONGODB_URI);
 
@@ -14,13 +16,17 @@ mongoose.connect( MONGODB_URI, {useNewUrlParser: true})
   .then(() => {
     console.log('deleting');
     return Promise.all([
-      Trip.deleteMany()
+      Trip.deleteMany(),
+      User.deleteMany(),
+      Suggestion.deleteMany()
     ]);
   })
   .then(() => {
     console.log('seeding');
     return Promise.all([
-      Trip.insertMany(trips)
+      Trip.insertMany(trips),
+      User.insertMany(users),
+      Suggestion.insertMany(suggestions)
     ]);
   })
   .then(results => {
