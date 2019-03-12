@@ -5,8 +5,15 @@ const router = express.Router();
 
 const Trip = require('../models/trip');
 
+
+//GET ALL TRIPS
 router.get('/', (req, res, next) => {
   Trip.find({})
+    .populate({
+      path: 'suggestions',
+      populate: {path: 'userId'}
+    })
+    .populate('userId')
     .then(results => {
       res.json(results);
     })
@@ -15,6 +22,8 @@ router.get('/', (req, res, next) => {
     });
 });
 
+
+//CREATE A TRIP
 router.post('/', (req, res, next) => {
   const {name, duration, selectedOptions} = req.body;
   const newTrip = {name, duration, selectedOptions};
@@ -28,6 +37,7 @@ router.post('/', (req, res, next) => {
     });
 });
 
+//ADD A SUGGESTION
 router.put('/:id', (req, res, next) => {
   const id = req.params.id;
   const {suggestion} = req.body;
