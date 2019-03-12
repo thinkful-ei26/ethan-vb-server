@@ -11,7 +11,8 @@ const { dbConnect } = require('./db-mongoose');
 const localStrategy = require('./passport/local');
 const jwtStrategy = require('./passport/jwt');
 
-
+const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 const tripsRouter = require('./routes/trips');
 
 const app = express();

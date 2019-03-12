@@ -63,7 +63,7 @@ describe('GET all trips', function(){
         expect(res.body).to.have.length(3);
         res.body.forEach(function (item) {
           expect(item).to.be.a('object');
-          expect(item).to.have.all.keys('id', 'name', 'createdAt', 'selectedOptions', 'duration', 'suggestions', 'updatedAt');
+          expect(item).to.have.all.keys('id', 'name', 'createdAt', 'selectedOptions', 'duration', 'suggestions');
         });
       });
   });
