@@ -6,7 +6,7 @@ const tripSchema = new mongoose.Schema({
   name: String,
   selectedOptions: [{ type: String, required: true }],
   duration: { type: String, required: true },
-  suggestions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Suggestion', required: true }],
+  suggestions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Suggestion'}],
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
