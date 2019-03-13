@@ -52,23 +52,23 @@ router.post('/', (req, res, next) => {
 });
 
 //ADD A SUGGESTION
-router.put('/:id', (req, res, next) => {
-  const id = req.params.id;
-  const userId = req.user.id;
-  const {suggestion} = req.body;
-  suggestion.userId = userId;
+// router.put('/:id', (req, res, next) => {
+//   const id = req.params.id;
+//   const userId = req.user.id;
+//   const {suggestion} = req.body;
+//   suggestion.userId = userId;
 
-  Trip.findOneAndUpdate({_id: id}, { $push: {suggestions: suggestion} }, {new: true})
-    .then(result => {
-      if (result) {
-        res.json(result);
-      } else {
-        next();
-      }
-    })
-    .catch(err => {
-      next(err);
-    });
-});
+//   Trip.findOneAndUpdate({_id: id}, { $push: {suggestions: suggestion} }, {new: true})
+//     .then(result => {
+//       if (result) {
+//         res.json(result);
+//       } else {
+//         next();
+//       }
+//     })
+//     .catch(err => {
+//       next(err);
+//     });
+// });
 
 module.exports = router;

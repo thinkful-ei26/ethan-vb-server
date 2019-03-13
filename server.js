@@ -14,6 +14,7 @@ const jwtStrategy = require('./passport/jwt');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const tripsRouter = require('./routes/trips');
+const suggestionsRouter = require('./routes/suggestions');
 
 const app = express();
 
@@ -41,6 +42,7 @@ const localAuth = passport.authenticate('local', options);
 
 
 app.use('/api/trips', jwtAuth, tripsRouter);
+app.use('/api/suggestions', jwtAuth, suggestionsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth/login', localAuth, authRouter); //for login
 app.use('/api/auth', authRouter); //for refresh

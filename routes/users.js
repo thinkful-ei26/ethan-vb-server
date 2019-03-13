@@ -55,7 +55,9 @@ function formatName(name) {
 
 router.post('/', (req,res,next) => {
   //First do validation (dont trust client)
+  console.log(req.body);
   const requiredFields = ['registerUsername', 'password', 'firstName', 'lastName'];
+
 
   let missing= missingField(requiredFields, req.body);
 
