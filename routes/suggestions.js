@@ -16,7 +16,6 @@ router.post('/:id', (req, res, next) => {
       return Trip.findByIdAndUpdate( {_id: tripId}, { $push: {suggestions: suggestion.id} }, {new: true})
         .populate({
           path: 'suggestions',
-          // populate: { path: 'userId' }
         })
         .populate('userId');
     })

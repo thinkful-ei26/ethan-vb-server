@@ -4,7 +4,7 @@ const trips = [
   {
     _id: '111111111111111111111101',
     name: 'Mountains',
-    selectedOptions: ['skiing', 'breweries'],
+    selectedOptions: ['Skiing', 'Breweries'],
     duration: 9,
     suggestions: ['333333333333333333333301', '333333333333333333333302'],
     userId: '000000000000000000000002'
@@ -13,7 +13,7 @@ const trips = [
   {
     _id: '111111111111111111111102',
     name: 'frank',
-    selectedOptions: ['beaches'],
+    selectedOptions: ['Beaches'],
     duration: 2,
     suggestions: ['333333333333333333333303', '333333333333333333333304'],
     userId: '000000000000000000000001'
@@ -22,7 +22,7 @@ const trips = [
   {
     _id: '111111111111111111111103',
     name: 'fred',
-    selectedOptions: ['city'],
+    selectedOptions: ['City'],
     duration: 9,
     suggestions: [],
     userId: '000000000000000000000002'
@@ -58,9 +58,9 @@ const suggestions = [
 const users = [
   {
     _id: '000000000000000000000001',
-    firstName: 'Nikkie',
-    lastName: 'Mashian',
-    username: 'nikmash',
+    firstName: 'Ethan',
+    lastName: 'Frigon',
+    username: 'ethfrig',
     // hash for "password"
     password: '$2a$10$QJCIX42iD5QMxLRgHHBJre2rH6c6nI24UysmSYtkmeFv6X8uS1kgi',
   },
@@ -69,6 +69,14 @@ const users = [
     firstName: 'Steve',
     lastName: 'Anderson',
     username: 'steve',
+    // hash for "password"
+    password: '$2a$10$QJCIX42iD5QMxLRgHHBJre2rH6c6nI24UysmSYtkmeFv6X8uS1kgi',
+  },
+  {
+    _id: '000000000000000000000003',
+    firstName: 'Demo',
+    lastName: 'User',
+    username: 'demo',
     // hash for "password"
     password: '$2a$10$QJCIX42iD5QMxLRgHHBJre2rH6c6nI24UysmSYtkmeFv6X8uS1kgi',
   }
