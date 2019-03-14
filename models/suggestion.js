@@ -15,6 +15,7 @@ suggestionSchema.set('toJSON', {
     delete ret._id; // delete `_id`
     delete ret.__v; //delete _v
   }
+  
 });
 
 const Suggestion = mongoose.model('Suggestion', suggestionSchema); 
