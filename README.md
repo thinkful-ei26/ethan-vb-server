@@ -1,45 +1,82 @@
-# Thinkful Backend Template
+# [VacationBrain](https://ethan-vb-client.herokuapp.com/)
 
-A template for developing and deploying Node.js apps.
+## Welcome to VacationBrain
+Create an account to add a trip:
+Give your trip a name and tell us what you're looking for in a vacation and how long you're travelling for. Other VacationBrain users will suggest a destination for you!
+Add a suggestion:
+Have great vacation ideas of your own? Submit a suggestion for other users' requested trips.
 
-## Getting started
+## App Screenshots
 
-### Setting up a project
+## Tech Specs: 
+**Front-end:**
+- React
+- Redux
+- Javascript
+- HTML5
 
-* Move into your projects directory: `cd ~/YOUR_PROJECTS_DIRECTORY`
-* Clone this repository: `git clone https://github.com/Thinkful-Ed/backend-template YOUR_PROJECT_NAME`
-* Move into the project directory: `cd YOUR_PROJECT_NAME`
-* Install the dependencies: `npm install`
-* Create a new repo on GitHub: https://github.com/new
-    * Make sure the "Initialize this repository with a README" option is left unchecked
-* Update the remote to point to your GitHub repository: `git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME`
+**Back-end**
+- Node
+- Express
+- MongoDB hosted on mLab
+- JWT 
+- Passport 
 
-### Working on the project
+## Links
+[Client Repo](https://github.com/thinkful-ei26/ethan-vb-client)
 
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Run the development task: `npm start`
-    * Starts a server running at http://localhost:8080
-    * Automatically restarts when any of your files change
+[Deployed Server On Heroku](https://ethan-vb-server.herokuapp.com/)
 
-## Databases
+[Deployed Client On Heroku](https://ethan-vb-client.herokuapp.com/)
 
-By default, the template is configured to connect to a MongoDB database using Mongoose.  It can be changed to connect to a PostgreSQL database using Knex by replacing any imports of `db-mongoose.js` with imports of `db-knex.js`, and uncommenting the Postgres `DATABASE_URL` lines in `config.js`.
+## Schema
+### User
+```
+{
+  firstName:  {type: String, required: true},
+  lastName: {type: String, required: true},
+  username: {type: String, required: true, unique: true},
+  password: {type: String, required: true}
+}
+```
 
-## Deployment
+### Post
+```
+{ 
+  name: String,
+  selectedOptions: [{ type: String, required: true }],
+  duration: { type: String, required: true },
+  suggestions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Suggestion'}],
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+}
+```
 
-Requires the [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-command-line).
+### Suggestion
+```
+{
+ suggestion: { type: String, required: true },
+  tripId: { type: mongoose.Schema.Types.ObjectId, ref: 'Trip', required: true  },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+}
+```
 
-### Setting up the project on Heroku
+## API Overview
+```        
+/api
+.
+├── /auth
+│   └── POST
+│       ├── /login
+│       ├── /refresh
+│       └── /refresh-profile
+├── /users
+│   └── POST /
+├── /trips
+│   └── GET 
+│       ├── /trips
+│       ├── /my-trips
+│   └── POST /
+├── /suggestions
+│   └── POST /:id
+```
 
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Create the Heroku app: `heroku create PROJECT_NAME`
-
-* If your backend connects to a database, you need to configure the database URL:
-    * For a MongoDB database: `heroku config:set DATABASE_URL=mongodb://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`
-    * For a PostgreSQL database: `heroku config:set DATABASE_URL=postgresql://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`
-
-* If you are creating a full-stack app, you need to configure the client origin: `heroku config:set CLIENT_ORIGIN=https://www.YOUR_DEPLOYED_CLIENT.com`
-
-### Deploying to Heroku
-
-* Push your code to Heroku: `git push heroku master`
